@@ -17,7 +17,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DEDA41B8-01DA-4105-BC07-4B2A8C3BA6F8}</ProjectGuid>
+    <ProjectGuid>{863ECE01-EC68-4FB7-8CC4-787BDDF60100}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>Satrabel.OpenUrlRewriter</RootNamespace>
@@ -27,14 +27,14 @@
     <OldToolsVersion>4.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <UseIISExpress>true</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <DefineConstants>TRACE;DEBUG;DNN71</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DNN71,DNN96</DefineConstants>
     <OutputPath>..\..\bin\</OutputPath>
     <DocumentationFile>OpenUrlRewriter.xml</DocumentationFile>
     <WarningLevel>1</WarningLevel>
@@ -42,7 +42,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <DefineConstants>TRACE;DNN71</DefineConstants>
+    <DefineConstants>TRACE;DNN71,DNN96</DefineConstants>
     <Optimize>true</Optimize>
     <OutputPath>..\..\bin\</OutputPath>
     <DocumentationFile>
@@ -53,6 +53,10 @@
     <Reference Include="DotNetNuke, Version=7.4.1.280, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Abstractions, Version=9.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DotNetNuke.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.Instrumentation, Version=7.3.3.118, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -238,9 +242,9 @@
     <None Include="App_LocalResources\View.ascx.resx" />
     <None Include="BuildScripts\ModulePackage.targets" />
     <None Include="BuildScripts\MSBuild.Community.Tasks.Targets" />
-    <None Include="OpenUrlRewriter71.dnn">
+    <Content Include="OpenUrlRewriter96.dnn">
       <SubType>Designer</SubType>
-    </None>
+    </Content>
     <None Include="Providers\DataProviders\SqlDataProvider\00.02.00.SqlDataProvider" />
     <None Include="Providers\DataProviders\SqlDataProvider\00.03.00.SqlDataProvider" />
     <None Include="Providers\DataProviders\SqlDataProvider\01.01.02.SqlDataProvider" />
@@ -292,8 +296,8 @@
   </ProjectExtensions>
   <PropertyGroup>
     <Extension>zip</Extension>
-    <DNNFileName>OpenUrlRewriter71</DNNFileName>
-    <PackageName>OpenUrlRewriter71</PackageName>
+    <DNNFileName>OpenUrlRewriter96</DNNFileName>
+    <PackageName>OpenUrlRewriter96</PackageName>
     <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\BuildScripts</MSBuildCommunityTasksPath>
   </PropertyGroup>
   <Import Project="BuildScripts\ModulePackage.Targets" />

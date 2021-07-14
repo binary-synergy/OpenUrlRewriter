@@ -14,13 +14,14 @@ using DotNetNuke.Entities.Host;
 using DotNetNuke.Instrumentation;
 using DotNetNuke.Security;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 
 #endregion
 
 namespace Satrabel.Services.Log.UrlRule
 {
 
-    
+
 
     public class UrlRuleController
     {
@@ -28,30 +29,39 @@ namespace Satrabel.Services.Log.UrlRule
 
         public static int AddUrlRule(UrlRuleInfo objUrlRule)
         {
-            return Convert.ToInt32(DotNetNuke.Data.DataProvider.Instance().ExecuteScalar(ModuleQualifier+"AddUrlRule",
-                                          objUrlRule.DateTime,
-                                          objUrlRule.UserId,
-                                          
-                                          objUrlRule.RuleType,
-                                          GetNull(objUrlRule.CultureCode),
-                                          objUrlRule.PortalId,
-                                          GetNull(objUrlRule.TabId),
-                                          GetNull(objUrlRule.Parameters),
-                                          objUrlRule.RemoveTab,
-                                          objUrlRule.RuleAction,
-                                          GetNull(objUrlRule.Url),
-                                          GetNull(objUrlRule.RedirectDestination),
-                                          GetNull(objUrlRule.RedirectStatus)
-                                        ));
-
-            
+            try
+            {
+                var result = DotNetNuke.Data.DataProvider.Instance().ExecuteScalar(ModuleQualifier + "AddUrlRule",
+                                                          objUrlRule.DateTime,
+                                                          objUrlRule.UserId,
+                                                          objUrlRule.RuleType,
+                                                          GetNull(objUrlRule.CultureCode),
+                                                          objUrlRule.PortalId,
+                                                          GetNull(objUrlRule.TabId),
+                                                          GetNull(objUrlRule.Parameters),
+                                                          objUrlRule.RemoveTab,
+                                                          objUrlRule.RuleAction,
+                                                          GetNull(objUrlRule.Url),
+                                                          GetNull(objUrlRule.RedirectDestination),
+                                                          GetNull(objUrlRule.RedirectStatus)
+                                                        );
+                if (result != null)
+                {
+                    return (int)result;
+                }
+                return 0;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
         }
 
 
         public static void UpdateUrlRule(UrlRuleInfo objUrlRule)
         {
             DotNetNuke.Data.DataProvider.Instance().ExecuteNonQuery(ModuleQualifier + "UpdateUrlRule",
-                                          objUrlRule.UrlRuleId,  
+                                          objUrlRule.UrlRuleId,
                                           objUrlRule.DateTime,
                                           objUrlRule.UserId,
                                           objUrlRule.PortalId,
@@ -64,25 +74,25 @@ namespace Satrabel.Services.Log.UrlRule
                                           GetNull(objUrlRule.Url),
                                           GetNull(objUrlRule.RedirectDestination),
                                           GetNull(objUrlRule.RedirectStatus)
-                
+
                 );
-            
+
         }
 
         public static void DeleteUrlRule(int UrlRuleId)
         {
             DotNetNuke.Data.DataProvider.Instance().ExecuteNonQuery(ModuleQualifier + "DeleteUrlRule", UrlRuleId);
-            
+
         }
 
         static public UrlRuleInfo GetUrlRule(int UrlRuleID)
-        {            
+        {
             return CBO.FillObject<UrlRuleInfo>(DotNetNuke.Data.DataProvider.Instance().ExecuteReader(ModuleQualifier + "GetUrlRule", UrlRuleID));
         }
 
         static public List<UrlRuleInfo> GetUrlRules(int PortalId)
         {
-            return CBO.FillCollection<UrlRuleInfo>(DotNetNuke.Data.DataProvider.Instance().ExecuteReader(ModuleQualifier + "GetUrlRules", PortalId));            
+            return CBO.FillCollection<UrlRuleInfo>(DotNetNuke.Data.DataProvider.Instance().ExecuteReader(ModuleQualifier + "GetUrlRules", PortalId));
         }
 
 
@@ -91,7 +101,7 @@ namespace Satrabel.Services.Log.UrlRule
             return DotNetNuke.Common.Utilities.Null.GetNull(Field, DBNull.Value);
         }
 
-   }
+    }
 
 
 }
