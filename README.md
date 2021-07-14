@@ -3,5 +3,4 @@ OpenUrlRewriter
 
 Open Url Rewriter for DNN (DotNetNuke)
 
-More info on : https://openurlrewriter.codeplex.com/
-
+for the 9.9.1 branch to run you need to execute OpenUrlRewriter-AddRuleUpdate.sql on your db
